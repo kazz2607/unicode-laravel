@@ -1,0 +1,3 @@
+Xác định các step trong rollback Migrate
+- Vào table Migrations 
+- Xác định bước cần rollback thông qua cột batch
