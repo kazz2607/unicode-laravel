@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 09, 2024 at 06:59 PM
+-- Generation Time: Nov 09, 2024 at 07:44 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -82,7 +82,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2024_11_09_023402_change_status_column_products_table', 7),
 (24, '2024_11_09_035704_add_unique_sku_products_table', 7),
 (25, '2024_11_09_113301_create_attributes_table', 7),
-(27, '2024_11_09_114559_drop_primary_attributes_table', 8);
+(27, '2024_11_09_114559_drop_primary_attributes_table', 8),
+(28, '2024_11_09_115255_add_index__products_table', 9),
+(30, '2024_11_09_122141_add_field_users_table', 10),
+(31, '2024_11_09_122951_add_foreign_users_table', 11);
 
 -- --------------------------------------------------------
 
@@ -161,6 +164,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -222,14 +226,16 @@ ALTER TABLE `posts`
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `products_sku_unique` (`sku`),
-  ADD UNIQUE KEY `products_name_unique` (`name`);
+  ADD UNIQUE KEY `products_name_unique` (`name`),
+  ADD KEY `products_created_at_updated_at_index` (`created_at`,`updated_at`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `users_group_id_foreign` (`group_id`);
 
 --
 -- Indexes for table `user_groups`
@@ -251,7 +257,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -282,6 +288,16 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_groups`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_group_id_foreign` FOREIGN KEY (`group_id`) REFERENCES `user_groups` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
