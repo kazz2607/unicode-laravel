@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 09, 2024 at 09:39 AM
+-- Generation Time: Nov 09, 2024 at 06:59 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `unicode-laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attributes`
+--
+
+CREATE TABLE `attributes` (
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -65,7 +78,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2024_11_07_150854_rename_groups_table', 4),
 (17, '2024_11_07_151158_add_field_products_table', 4),
 (20, '2024_11_08_012936_change_field_products_table', 5),
-(22, '2024_11_09_022117_change_data_type_products_table', 6);
+(22, '2024_11_09_022117_change_data_type_products_table', 6),
+(23, '2024_11_09_023402_change_status_column_products_table', 7),
+(24, '2024_11_09_035704_add_unique_sku_products_table', 7),
+(25, '2024_11_09_113301_create_attributes_table', 7),
+(27, '2024_11_09_114559_drop_primary_attributes_table', 8);
 
 -- --------------------------------------------------------
 
@@ -125,9 +142,10 @@ CREATE TABLE `products` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `active` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `sku` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -202,7 +220,9 @@ ALTER TABLE `posts`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `products_sku_unique` (`sku`),
+  ADD UNIQUE KEY `products_name_unique` (`name`);
 
 --
 -- Indexes for table `users`
@@ -231,7 +251,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
