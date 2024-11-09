@@ -14,11 +14,11 @@ return new class extends Migration
         
         Schema::table('products', function(Blueprint $table){
             // Xoá tính năng default status
-            if (!Schema::hasColumn('products','status')){
+            if (Schema::hasColumn('products','status')){
                 $table->boolean('status')->default(null)->change();
             }
             // Xoá field null của content
-            if (!Schema::hasColumn('products','content')){
+            if (Schema::hasColumn('products','content')){
                 $table->text('content')->nullable(false)->change();
             }
         }); 
@@ -32,11 +32,11 @@ return new class extends Migration
         //
         Schema::table('products', function(Blueprint $table){
             // Xoá tính năng default status
-            if (!Schema::hasColumn('products','status')){
+            if (Schema::hasColumn('products','status')){
                 $table->boolean('status')->default(0)->change();
             }
             // Xoá field null của content
-            if (!Schema::hasColumn('products','content')){
+            if (Schema::hasColumn('products','content')){
                 $table->text('content')->nullable()->change();
             }
         }); 

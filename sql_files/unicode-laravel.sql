@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 09, 2024 at 08:16 AM
+-- Generation Time: Nov 09, 2024 at 09:39 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -63,7 +63,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2024_11_07_132336_add_field_groups_table', 2),
 (14, '2024_11_07_145231_create_posts_table', 3),
 (16, '2024_11_07_150854_rename_groups_table', 4),
-(17, '2024_11_07_151158_add_field_products_table', 4);
+(17, '2024_11_07_151158_add_field_products_table', 4),
+(20, '2024_11_08_012936_change_field_products_table', 5),
+(22, '2024_11_09_022117_change_data_type_products_table', 6);
 
 -- --------------------------------------------------------
 
@@ -120,10 +122,10 @@ CREATE TABLE `posts` (
 
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -229,7 +231,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
