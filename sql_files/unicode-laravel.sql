@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 10, 2024 at 08:15 PM
+-- Generation Time: Nov 10, 2024 at 09:37 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -160,6 +160,7 @@ CREATE TABLE `products` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -173,8 +174,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `group_id`, `created_at`, `updated_at`) VALUES
-(135, 'Nguyễn Anh Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', 'YocH9d0qqIvjzeZZRrVVVGiEiBAJ6dFqrixKeHfCVZjucTIpBsy1w7TQW18h', NULL, '2024-11-10 02:31:58', '2024-11-10 02:31:58');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `group_id`, `created_at`, `updated_at`) VALUES
+(135, 'Nguyễn Anh Tuấn', 'admin', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', '2fTpuqpvm8OiZlL8J1HoLy3hRqg8rvMDixqU4noueRs60noXtPqY8VUKTeog', NULL, '2024-11-10 02:31:58', '2024-11-10 02:31:58');
 
 -- --------------------------------------------------------
 

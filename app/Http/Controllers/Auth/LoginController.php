@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -56,5 +57,34 @@ class LoginController extends Controller
         return $request->wantsJson()
             ? new JsonResponse([], 204)
             : redirect(route('login'));
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string|min:6',
+        ],
+        [
+            $this->username().'.required' => 'Tên đăng nhập bắt buộc phải nhập',
+            $this->username().'.string' => 'Tên đăng nhập không hợp lệ',
+            $this->username().'.email' => 'Tên đăng nhập phải là định dạng email',
+            'password.required' => 'Mật khẩu bắt buộc phải nhập',
+            'password.string' => 'Mật khẩu dữ liệu không hợp lệ',
+            'password.min' => 'Mật khẩu bắt buộc phải từ :min ký tự',
+        ]
+        );
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => ['Thông tin đăng nhập không hợp lệ'],
+        ]);
+    }
+
+    public function username()
+    {
+        return 'username';
     }
 }
