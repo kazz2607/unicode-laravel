@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 10, 2024 at 04:36 PM
+-- Generation Time: Nov 10, 2024 at 08:15 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -174,7 +174,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `group_id`, `created_at`, `updated_at`) VALUES
-(135, 'Nguyễn Anh Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', NULL, NULL, '2024-11-10 02:31:58', '2024-11-10 02:31:58');
+(135, 'Nguyễn Anh Tuấn', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', 'YocH9d0qqIvjzeZZRrVVVGiEiBAJ6dFqrixKeHfCVZjucTIpBsy1w7TQW18h', NULL, '2024-11-10 02:31:58', '2024-11-10 02:31:58');
 
 -- --------------------------------------------------------
 
@@ -275,7 +275,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -293,7 +293,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
