@@ -16,10 +16,10 @@
                             </div>
                         @endif
                         <div class="row mb-3">
-                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Tên đăng nhập') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Tên đăng nhập hoặc Email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" placeholder="Tên đăng nhập" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" autocomplete="email" autofocus>
+                                <input id="username" placeholder="Tên đăng nhập hoặc Email" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" autocomplete="email" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
