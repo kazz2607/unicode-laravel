@@ -34,3 +34,7 @@ Route::get('/faker', function () {
     dd($customers);
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
