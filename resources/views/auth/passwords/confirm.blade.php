@@ -5,19 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+                <div class="card-header">{{ __('Xác nhận mật khẩu') }}</div>
 
                 <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
-
+                    <div class="alert alert-warning">
+                        {{ __('Vui lòng xác nhận mật khẩu trước khi tiếp tục.') }}
+                    </div>
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
-
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                Đã có lỗi xảy ra. Vui lòng kiểm tra dữ liệu bên dưới.
+                            </div>
+                        @endif
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mật khẩu') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" placeholder="Mật khẩu" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -30,12 +35,12 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
+                                    {{ __('Xác nhận mật khẩu') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Quên mật khẩu?') }}
                                     </a>
                                 @endif
                             </div>
