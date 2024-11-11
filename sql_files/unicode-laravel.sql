@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 10, 2024 at 09:37 PM
+-- Generation Time: Nov 11, 2024 at 10:13 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -99,6 +99,13 @@ CREATE TABLE `password_reset_tokens` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('kairu2607@gmail.com', '$2y$12$pnXRjI3aftI/R301F9SmUuXf/oTrsCrVIx91QfnaYNHUkaQb4q7B2', '2024-11-11 06:15:50');
+
 -- --------------------------------------------------------
 
 --
@@ -175,7 +182,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `group_id`, `created_at`, `updated_at`) VALUES
-(135, 'Nguyễn Anh Tuấn', 'admin', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', '2fTpuqpvm8OiZlL8J1HoLy3hRqg8rvMDixqU4noueRs60noXtPqY8VUKTeog', NULL, '2024-11-10 02:31:58', '2024-11-10 02:31:58');
+(135, 'Nguyễn Anh Tuấn', 'admin', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', '4XABNRfnScqAm5O0v0HJmvqX1bXkrtyEQC5pjs8G26sc5MHFjmT314aPU5hD', NULL, '2024-11-10 02:31:58', '2024-11-10 02:31:58'),
+(145, 'Nguyễn Anh Tuấn', 'nguyentuan', 'admin@gmail.com', NULL, '$2y$12$CS8aOozrs81dC1hXz5hfOu7GbcplG4s83SUC0fPnlQIKPJ6Gfl91K', NULL, NULL, '2024-11-11 06:10:56', '2024-11-11 06:10:56');
 
 -- --------------------------------------------------------
 
@@ -288,7 +296,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `user_groups`
