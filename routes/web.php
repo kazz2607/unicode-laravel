@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Faker\Factory;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -20,26 +21,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/faker', function () {
-//     $faker = Factory::create();
-//     $limit = 10 ;
-//     for ($i=0; $i <= $limit; $i++) { 
-//         $customers[$i] = [
-//             'name' => $faker->name,
-//             'email' => $faker->unique()->email,
-//             'phone' => $faker->phoneNumber,
-//             'website' => $faker->domainName,
-//             'age' => $faker->numberBetween(20,100),
-//             'address' => $faker->address,
-//             'card' => $faker->creditCardNumber
-//         ];
-//     }
-//     dd($customers);
-// });
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth');
+Route::prefix('admin')->middleware(['auth','verified'])->group( function() {
+    Route::get('/', [AdminController::class, 'index']);
+});
+
+// Link thông báo veryfy khi người đăng ký tài khoản, chưa xác thực email
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+// Liên kết sẽ được gửi vào email của người đăng ký
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Xử lý hành động gửi lại email
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
