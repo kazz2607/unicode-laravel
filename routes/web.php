@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Faker\Factory;
+
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +42,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin', function() {
-    return '<h1>Admin Dashboard</h1>';
-});
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth');
