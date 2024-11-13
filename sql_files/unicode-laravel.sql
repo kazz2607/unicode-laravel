@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 11, 2024 at 10:13 PM
+-- Generation Time: Nov 13, 2024 at 07:34 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -33,6 +33,29 @@ CREATE TABLE `attributes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctors`
+--
+
+CREATE TABLE `doctors` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `name`, `email`, `password`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Nguyễn Tuấn', 'nguyentuan.doctor@gmail.com', '$2y$12$OHTm6YfTxwXjcK5c.7vO5eCwqmlMI8fptnlgVbUno2xPrqogedWn6', 1, '2024-11-12 08:12:03', '2024-11-12 08:12:03');
 
 -- --------------------------------------------------------
 
@@ -85,7 +108,22 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (27, '2024_11_09_114559_drop_primary_attributes_table', 8),
 (28, '2024_11_09_115255_add_index__products_table', 9),
 (30, '2024_11_09_122141_add_field_users_table', 10),
-(31, '2024_11_09_122951_add_foreign_users_table', 11);
+(31, '2024_11_09_122951_add_foreign_users_table', 11),
+(32, '2014_10_12_100000_create_password_resets_table', 12),
+(33, '2024_11_09_123915_drop_users_groups_table', 12),
+(34, '2024_11_12_150125_create_doctors_table', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -182,7 +220,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `group_id`, `created_at`, `updated_at`) VALUES
-(135, 'Nguyễn Anh Tuấn', 'admin', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', '4XABNRfnScqAm5O0v0HJmvqX1bXkrtyEQC5pjs8G26sc5MHFjmT314aPU5hD', NULL, '2024-11-10 02:31:58', '2024-11-10 02:31:58'),
+(135, 'Nguyễn Anh Tuấn', 'admin', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', 'NmYrCtzblZjbh7lOHAQVti3mxZsbquVqbVH39trOIioffhCIN5QoXDHOJkzb', NULL, '2024-11-10 02:31:58', '2024-11-12 07:46:32'),
 (145, 'Nguyễn Anh Tuấn', 'nguyentuan', 'admin@gmail.com', NULL, '$2y$12$CS8aOozrs81dC1hXz5hfOu7GbcplG4s83SUC0fPnlQIKPJ6Gfl91K', NULL, NULL, '2024-11-11 06:10:56', '2024-11-11 06:10:56');
 
 -- --------------------------------------------------------
@@ -204,6 +242,13 @@ CREATE TABLE `user_groups` (
 --
 
 --
+-- Indexes for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `doctors_email_unique` (`email`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -215,6 +260,12 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indexes for table `password_reset_tokens`
@@ -263,6 +314,12 @@ ALTER TABLE `user_groups`
 --
 
 --
+-- AUTO_INCREMENT for table `doctors`
+--
+ALTER TABLE `doctors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -272,7 +329,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
