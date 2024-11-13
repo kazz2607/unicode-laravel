@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Faker\Factory;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Doctors\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,10 @@ Route::post('/email/verification-notification', function (Request $request) {
  
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+
+// Route Doctors
+
+Route::prefix('doctors')->name('doctors.')->group(function(){
+    Route::get('/login',[LoginController::class,'login'])->name('login');
+    Route::post('/login',[LoginController::class,'postLogin']);
+});
