@@ -56,4 +56,9 @@ Route::prefix('doctors')->name('doctors.')->group(function(){
     Route::get('/',[IndexController::class,'index'])->middleware('auth:doctor')->name('index');
     Route::get('/login',[LoginController::class,'login'])->middleware('guest:doctor')->name('login');
     Route::post('/login',[LoginController::class,'postLogin'])->middleware('guest:doctor');
+    Route::post('/logout', function(){
+        Auth::guard('doctor')->logout();
+        return redirect()->route('doctors.login');
+    })->middleware('auth:doctor')->name('logout');
+
 });
