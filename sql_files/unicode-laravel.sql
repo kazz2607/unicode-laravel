@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 13, 2024 at 07:34 PM
+-- Generation Time: Nov 14, 2024 at 10:05 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -220,7 +220,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `group_id`, `created_at`, `updated_at`) VALUES
-(135, 'Nguyễn Anh Tuấn', 'admin', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', 'NmYrCtzblZjbh7lOHAQVti3mxZsbquVqbVH39trOIioffhCIN5QoXDHOJkzb', NULL, '2024-11-10 02:31:58', '2024-11-12 07:46:32'),
+(135, 'Nguyễn Anh Tuấn', 'admin', 'kairu2607@gmail.com', NULL, '$2y$12$f1ogycBo6xlo/xMCwHBWdOuDUVnsI4fCagL83fRh3tvmByIwagHka', 'LZNKPpusJRTbqOzELXa0OrpD2ojbx8xawToTsdxGIw9VnlObGZVTrfnCtSd9', NULL, '2024-11-10 02:31:58', '2024-11-12 07:46:32'),
 (145, 'Nguyễn Anh Tuấn', 'nguyentuan', 'admin@gmail.com', NULL, '$2y$12$CS8aOozrs81dC1hXz5hfOu7GbcplG4s83SUC0fPnlQIKPJ6Gfl91K', NULL, NULL, '2024-11-11 06:10:56', '2024-11-11 06:10:56');
 
 -- --------------------------------------------------------

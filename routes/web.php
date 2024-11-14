@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Doctors\Auth\LoginController;
-
+use App\Http\Controllers\Doctors\IndexController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +53,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 // Route Doctors
 
 Route::prefix('doctors')->name('doctors.')->group(function(){
-    Route::get('/login',[LoginController::class,'login'])->name('login');
-    Route::post('/login',[LoginController::class,'postLogin']);
+    Route::get('/',[IndexController::class,'index'])->middleware('auth:doctor')->name('index');
+    Route::get('/login',[LoginController::class,'login'])->middleware('guest:doctor')->name('login');
+    Route::post('/login',[LoginController::class,'postLogin'])->middleware('guest:doctor');
 });
