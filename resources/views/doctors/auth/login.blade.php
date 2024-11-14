@@ -66,8 +66,8 @@
                                     {{ __('Đăng nhập') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                @if (Route::has('doctors.forgot-password'))
+                                    <a class="btn btn-link" href="{{ route('doctors.forgot-password') }}">
                                         {{ __('Quên mật khẩu?') }}
                                     </a>
                                 @endif

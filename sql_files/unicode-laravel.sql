@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 14, 2024 at 10:05 AM
+-- Generation Time: Nov 14, 2024 at 10:23 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -55,7 +55,7 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `name`, `email`, `password`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Tuấn', 'nguyentuan.doctor@gmail.com', '$2y$12$OHTm6YfTxwXjcK5c.7vO5eCwqmlMI8fptnlgVbUno2xPrqogedWn6', 1, '2024-11-12 08:12:03', '2024-11-12 08:12:03');
+(1, 'Nguyễn Tuấn', 'kairu2607@gmail.com', '$2y$12$OHTm6YfTxwXjcK5c.7vO5eCwqmlMI8fptnlgVbUno2xPrqogedWn6', 1, '2024-11-12 08:12:03', '2024-11-12 08:12:03');
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,8 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
-('kairu2607@gmail.com', '$2y$12$pnXRjI3aftI/R301F9SmUuXf/oTrsCrVIx91QfnaYNHUkaQb4q7B2', '2024-11-11 06:15:50');
+('kairu2607@gmail.com', '$2y$12$w59E.lWOeefuGMNNkvOeheO1Df8WpzpEM.IdFPIjlwnohcq8lJ/h.', '2024-11-14 08:18:12'),
+('nguyentuan.doctor@gmail.com', '$2y$12$tyinx6QM/ksjt8a6cnC5pezWkNKfdLzsvclFJZmIHZ/BvIAZ02.tu', '2024-11-14 08:14:44');
 
 -- --------------------------------------------------------
 
