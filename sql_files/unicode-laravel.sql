@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 14, 2024 at 10:23 PM
+-- Generation Time: Nov 15, 2024 at 10:46 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -45,6 +45,7 @@ CREATE TABLE `doctors` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -54,8 +55,8 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `name`, `email`, `password`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Tuấn', 'kairu2607@gmail.com', '$2y$12$OHTm6YfTxwXjcK5c.7vO5eCwqmlMI8fptnlgVbUno2xPrqogedWn6', 1, '2024-11-12 08:12:03', '2024-11-12 08:12:03');
+INSERT INTO `doctors` (`id`, `name`, `email`, `password`, `remember_token`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Nguyễn Tuấn', 'kairu2607@gmail.com', '$2y$12$NjVQeOdk4QQd8YQxoM/WtOzJs5wRv7UNBL3VIGNfBfhCMnLZjzTBq', 'zFntwASOm0EN7qDOH3SOAl8dTFKQl7YwY5ZhNrppwIsIpAPMz6V4qpylCm5x', 1, '2024-11-12 08:12:03', '2024-11-15 08:46:38');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,6 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
-('kairu2607@gmail.com', '$2y$12$w59E.lWOeefuGMNNkvOeheO1Df8WpzpEM.IdFPIjlwnohcq8lJ/h.', '2024-11-14 08:18:12'),
 ('nguyentuan.doctor@gmail.com', '$2y$12$tyinx6QM/ksjt8a6cnC5pezWkNKfdLzsvclFJZmIHZ/BvIAZ02.tu', '2024-11-14 08:14:44');
 
 -- --------------------------------------------------------

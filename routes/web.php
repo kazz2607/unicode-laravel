@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Doctors\Auth\LoginController;
 use App\Http\Controllers\Doctors\Auth\ForgotPasswordController;
+use App\Http\Controllers\Doctors\Auth\ResetPasswordController;
 use App\Http\Controllers\Doctors\IndexController;
 /*
 |--------------------------------------------------------------------------
@@ -58,12 +59,14 @@ Route::prefix('doctors')->name('doctors.')->group(function(){
     Route::get('/login',[LoginController::class,'login'])->middleware('guest:doctor')->name('login');
     Route::get('/forgot-password',[ForgotPasswordController::class,'getForgotPassword'])->middleware('guest:doctor')->name('forgot-password');
     Route::post('/forgot-password',[ForgotPasswordController::class,'sendResetLinkEmail'])->middleware('guest:doctor');
+    
+    Route::get('/reset-password/{token}',[ResetPasswordController::class,'showResetForm'])->name('reset-password');
+    Route::post('/reset-password',[ResetPasswordController::class,'reset'])->name('update-password');
+    
     Route::post('/login',[LoginController::class,'postLogin'])->middleware('guest:doctor');
+    
     Route::post('/logout', function(){
         Auth::guard('doctor')->logout();
         return redirect()->route('doctors.login');
     })->middleware('auth:doctor')->name('logout');
-    Route::get('reset-password/{token}',function(){
-        return 'Reset Password';
-    })->name('reset-password');
 });

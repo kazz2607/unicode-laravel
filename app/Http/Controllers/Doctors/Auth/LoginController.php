@@ -16,7 +16,7 @@ class LoginController extends Controller
         if (Auth::guard('doctor')->check()){
             echo 'Đăng nhập thành công';
             $infoUser = Auth::guard('doctor')->user();
-            dd($infoUser);
+            //dd($infoUser);
         }
         return view('doctors.auth.login');
     }
