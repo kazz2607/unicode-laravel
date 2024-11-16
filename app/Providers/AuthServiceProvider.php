@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\Doctors;
 use Illuminate\Auth\Notifications\ResetPassword;
+use App\Models\User;
+use App\Models\Posts;
+use App\Policies\PostPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,6 +29,16 @@ class AuthServiceProvider extends ServiceProvider
         //
         ResetPassword::createUrlUsing(function (Doctors $doctor, string $token) {
             return route('doctors.reset-password', ['token' => $token]).'?email='.$doctor->email;
+        });
+
+        // Định nghĩa Gate
+        // Gate::define('posts.add', function (User $user) {
+        //     return true;
+        // });
+
+        Gate::define('posts.add', [PostPolicy::class, 'add']);
+        Gate::define('posts.edit',function(User $user, Posts $post){
+            return $user->id == $post->user_id;
         });
     }
 }

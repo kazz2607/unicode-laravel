@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(DoctorSeeder::class);
+        // $this->call(DoctorSeeder::class);
         // $this->call(GroupSeeder::class);
         
         //$this->call(UserFakerSeeder::class);
-        //$this->call(PostFakerSeeder::class);
+        $this->call(PostFakerSeeder::class);
         
         // \App\Models\User::factory(10)->create();
 
