@@ -28,11 +28,11 @@ class PostController extends Controller
         $post = Posts::find($id);
         //Gate::allows('posts.edit',$post);
         if (Gate::allows('posts.edit',$post)) {
-            return '<h2>Có quyền sửa bài viết</h2>';
+            return '<h2>Có quyền sửa bài viết '.$id.'</h2>';
         }
         //Kiểm tra không được phép
         if (Gate::denies('posts.edit',$post)) {
-            return '<h2>Không có quyền sửa bài viết</h2>';
+            return '<h2>Không có quyền sửa bài viết '.$id.'</h2>';
         }
         return '<h2>Sửa bài viết '.$id.'</h2> ';
     }
