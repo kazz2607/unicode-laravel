@@ -32,11 +32,12 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // Định nghĩa Gate
-        // Gate::define('posts.add', function (User $user) {
-        //     return true;
-        // });
+        Gate::define('posts.add', function (User $user) {
+            return false;
+        });
+        
+        // Gate::define('posts.add', [PostPolicy::class, 'add']);
 
-        Gate::define('posts.add', [PostPolicy::class, 'add']);
         Gate::define('posts.edit',function(User $user, Posts $post){
             return $user->id == $post->user_id;
         });
