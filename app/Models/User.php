@@ -43,4 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isSuperAdmin(){
+        if ($this->group_id == 1){
+            return true;
+        }
+        return false;
+    }
 }

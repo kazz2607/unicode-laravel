@@ -13,26 +13,28 @@ use App\Models\Posts;
 class PostController extends Controller
 {
     public function index(){
-        $user = Auth::user();
-        if($user->can('viewAny', Posts::class)){
-            return 'Được phép';
-        }
-        if($user->cant('viewAny', Posts::class)){
-            abort(403);
-            // return 'Không được phép';
-        }
+        $this->authorize('viewAny', Posts::class);
+        // $user = Auth::user();
+        // if($user->can('viewAny', Posts::class)){
+        //     return 'Được phép';
+        // }
+        // if($user->cant('viewAny', Posts::class)){
+        //     abort(403);
+        //     // return 'Không được phép';
+        // }
         return view('admin.posts.index');
     }
 
     public function show(Request $request, Posts $post){
-        $user = $request->user();
-        if($user->can('view',$post)){
-            return 'Được phép';
-        }
-        if($user->cant('view',$post)){
-            abort(403);
-            // return 'Không được phép';
-        }
+        $this->authorize('view',$post);
+        // $user = $request->user();
+        // if($user->can('view',$post)){
+        //     return 'Được phép';
+        // }
+        // if($user->cant('view',$post)){
+        //     abort(403);
+        //     // return 'Không được phép';
+        // }
     }
 
     public function add(){

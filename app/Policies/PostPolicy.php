@@ -13,7 +13,7 @@ class PostPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -62,5 +62,11 @@ class PostPolicy
     public function forceDelete(User $user, Posts $posts): bool
     {
         //
+    }
+
+    public function before(User $user){
+        if($user->isSuperAdmin()){
+            return true;
+        }  
     }
 }
