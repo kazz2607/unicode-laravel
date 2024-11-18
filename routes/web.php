@@ -37,6 +37,7 @@ Route::prefix('admin')->middleware(['auth','verified'])->name('admin.')->group( 
         Route::get('/', [PostController::class,'index'])->name('index');
         Route::get('/add', [PostController::class,'add'])->name('add')->can('posts.add');
         Route::get('/edit/{post}', [PostController::class,'edit'])->name('edit')->can('posts.edit','post');
+        Route::get('/show/{post}', [PostController::class,'show'])->name('show');
         Route::get('/delete/{id}', [PostController::class,'delete'])->name('delete');
     });
 });
